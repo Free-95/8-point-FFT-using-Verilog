@@ -39,6 +39,6 @@ module fft8_tb;
         in7 = 32'h40000000; // 2
         in8 = 32'h3c000000; // 1
 
-        #100 $finish;
+        #1000 $finish;
     end
 endmodule
