@@ -17,7 +17,7 @@ module tb_bit_reverse_mapper;
     integer i;
 
     initial begin
-        $dumpfile("waveform.vcd");   // name of the output file
+        $dumpfile("outputs/waveform.vcd");   // name of the output file
         $dumpvars(0); // dump all variables in this module
         // Initialize inputs with index value for visibility
         for (i = 0; i < SIZE; i = i + 1) begin

@@ -1,70 +1,71 @@
 module fft8_fp (
-    input [31:0] in1, in2, in3, in4, in5, in6, in7, in8, // 8 complex numbers
+    input [31:0] in1, in2, in3, in4, in5, in6, in7, in8, // 8 complex inputs
     input clk,
-    output reg [31:0] out1, out2, out3, out4, out5, out6, out7, out8 // 8 complex results
+    output reg [31:0] out1, out2, out3, out4, out5, out6, out7, out8 // 8 complex outputs
 );
 
-    wire [31:0] num_dit [0:7]; // Array to hold the inputs in DIT order
-    wire [31:0] stage1_result [0:7]; // Outputs of Stage 1
-    wire [31:0] stage2_result [0:7]; // Outputs of Stage 2
-    wire [31:0] stage3_result [0:7]; // Outputs of Stage 3
+    // Internal input array
+    wire [31:0] num [7:0];
 
-    assign num_dit[0] = in1;
-    assign num_dit[1] = in5;
-    assign num_dit[2] = in3;
-    assign num_dit[3] = in7;
-    assign num_dit[4] = in2;
-    assign num_dit[5] = in6;
-    assign num_dit[6] = in4;
-    assign num_dit[7] = in8;
+    // Intermediate results after each stage
+    wire [31:0] stage0 [7:0]; // bit-reversed input
+    wire [31:0] stage1 [7:0];
+    wire [31:0] stage2 [7:0];
+    wire [31:0] stage3 [7:0]; // final output
 
-    always @(posedge clk) begin
-        // Assign final results to outputs
-        out1 <= stage3_result[0];
-        out2 <= stage3_result[1];
-        out3 <= stage3_result[2];
-        out4 <= stage3_result[3];
-        out5 <= stage3_result[4];
-        out6 <= stage3_result[5];
-        out7 <= stage3_result[6];
-        out8 <= stage3_result[7];
+    // Twiddle index map (customize as needed)
+    reg [2:0] index [7:0];
+    integer k;
+    initial begin
+        for (k = 0; k < 8; k = k + 1) begin
+            index[k] = k[2:0];
+        end
     end
 
-    // Instantiate the bit reverse mapper
-    // bit_reverse_mapper #(3) br_mapper (
-    //     .in(num),
-    //     .out(stage_results[0:7]) 
-    // );
+    // Assign inputs
+    assign num[0] = in1;
+    assign num[1] = in2;
+    assign num[2] = in3;
+    assign num[3] = in4;
+    assign num[4] = in5;
+    assign num[5] = in6;
+    assign num[6] = in7;
+    assign num[7] = in8;
 
+    // Assign final stage results to outputs
+    always @(posedge clk) begin
+        out1 <= stage3[0];
+        out2 <= stage3[1];
+        out3 <= stage3[2];
+        out4 <= stage3[3];
+        out5 <= stage3[4];
+        out6 <= stage3[5];
+        out7 <= stage3[6];
+        out8 <= stage3[7];
+    end
 
+    // Bit-reverse the input
+    bit_reverse_mapper #(3) br_mapper (
+        .in(num),
+        .out(stage0)
+    );
 
-    // Butterfly Stage 1
-    generate 
-        genvar i;
-        for (i = 0; i < 4; i = i + 1) begin : stage1
-            butterfly2p butterfly_inst (
-                .num1(num_dit[2*i]),
-                .num2(num_dit[2*i + 1]),
-                .twiddle_index(3'b000), 
-                .clk(clk),
-                .result1(stage1_result[2*i]),
-                .result2(stage1_result[2*i + 1])
-            );
-        end
-    endgenerate
+    // === Stage 1 (Distance 1) ===
+    butterfly2p b10 (.num1(stage0[0]), .num2(stage0[1]), .twiddle_index(index[0]), .clk(clk), .result1(stage1[0]), .result2(stage1[1]));
+    butterfly2p b11 (.num1(stage0[2]), .num2(stage0[3]), .twiddle_index(index[0]), .clk(clk), .result1(stage1[2]), .result2(stage1[3]));
+    butterfly2p b12 (.num1(stage0[4]), .num2(stage0[5]), .twiddle_index(index[0]), .clk(clk), .result1(stage1[4]), .result2(stage1[5]));
+    butterfly2p b13 (.num1(stage0[6]), .num2(stage0[7]), .twiddle_index(index[0]), .clk(clk), .result1(stage1[6]), .result2(stage1[7]));
 
-    // Butterfly Stage 2
-    generate 
-        genvar j;
-        for (j = 0; j < 4; j = j + 1) begin : stage2
-            butterfly2p butterfly_inst2 (
-                .num1(stage1_result[(j<2) ? j : j + 2]),
-                .num2(stage1_result[(j<2) ? j+2 : j+4]),
-                .twiddle_index(3'b001), 
-                .clk(clk),
-                .result1(stage2_result[4*j]),
-                .result2(stage2_result[4*j + 1])
-            );
-        end
-    endgenerate
+    // === Stage 2 (Distance 2) ===
+    butterfly2p b20 (.num1(stage1[0]), .num2(stage1[2]), .twiddle_index(index[0]), .clk(clk), .result1(stage2[0]), .result2(stage2[2]));
+    butterfly2p b21 (.num1(stage1[1]), .num2(stage1[3]), .twiddle_index(index[2]), .clk(clk), .result1(stage2[1]), .result2(stage2[3]));
+    butterfly2p b22 (.num1(stage1[4]), .num2(stage1[6]), .twiddle_index(index[0]), .clk(clk), .result1(stage2[4]), .result2(stage2[6]));
+    butterfly2p b23 (.num1(stage1[5]), .num2(stage1[7]), .twiddle_index(index[2]), .clk(clk), .result1(stage2[5]), .result2(stage2[7]));
+
+    // === Stage 3 (Distance 4) ===
+    butterfly2p b30 (.num1(stage2[0]), .num2(stage2[4]), .twiddle_index(index[0]), .clk(clk), .result1(stage3[0]), .result2(stage3[4]));
+    butterfly2p b31 (.num1(stage2[1]), .num2(stage2[5]), .twiddle_index(index[1]), .clk(clk), .result1(stage3[1]), .result2(stage3[5]));
+    butterfly2p b32 (.num1(stage2[2]), .num2(stage2[6]), .twiddle_index(index[2]), .clk(clk), .result1(stage3[2]), .result2(stage3[6]));
+    butterfly2p b33 (.num1(stage2[3]), .num2(stage2[7]), .twiddle_index(index[3]), .clk(clk), .result1(stage3[3]), .result2(stage3[7]));
+
 endmodule

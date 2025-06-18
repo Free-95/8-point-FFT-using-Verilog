@@ -9,6 +9,8 @@ iverilog -g2012 -o sim.out tb_posit16_adder.v posit16_adder.v
 
 vvp sim.out
 
-iverilog -g2012 -o sim.out top.v butterfly.v cpx_mad.v bit_reverse_mapper.v float_adder.v float_multi.v twiddleROM.v fft8_tb.v
+iverilog -g2012 -o sim.out butterfly2p.v cpx_mad.v bit_reverse_mapper.v float_adder.v float_multi.v twiddleROM.v fft8_tb.v fft8_fp.v
 
 vvp sim.out
+
+Start-Process "gtkwave.exe" "outputs/*"

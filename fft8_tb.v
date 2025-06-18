@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module fft8_tb;
     reg [31:0] in1, in2, in3, in4, in5, in6, in7, in8;
     reg clk;
@@ -25,7 +27,7 @@ module fft8_tb;
         in8 = 32'h00000000; // 0 + 0i
 
         // Open VCD file for waveform viewing
-        $dumpfile("fft8.vcd");
+        $dumpfile("outputs/fft8.vcd");
         $dumpvars(0, fft8_tb);
 
         // Apply test vectors
@@ -39,6 +41,21 @@ module fft8_tb;
         in7 = 32'h40000000; // 2
         in8 = 32'h3c000000; // 1
 
-        #100 $finish;
+        // Apply test vectors
+        #10;
+        in1 = 32'h3c010000; // 1
+        in2 = 32'h40450000; // 2
+        in3 = 32'h42000640; // 3
+        in4 = 32'h44030000; // 4
+        in5 = 32'h44003020; // 4
+        in6 = 32'h42004010; // 3
+        in7 = 32'h40000401; // 2
+        in8 = 32'h3c030303; // 1
+
+
+        #1000 $finish;
+
+        
+
     end
 endmodule
