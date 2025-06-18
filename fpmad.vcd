@@ -1,0 +1,1727 @@
+$date
+	Wed Jun 18 20:26:39 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module fpmad_sim $end
+$var wire 32 ! result [31:0] $end
+$var reg 1 " clk $end
+$var reg 32 # num1 [31:0] $end
+$var reg 32 $ num2 [31:0] $end
+$var reg 3 % twiddle_index [2:0] $end
+$scope module uut $end
+$var wire 1 & clk $end
+$var wire 16 ' mult_imag [15:0] $end
+$var wire 16 ( mult_imag1 [15:0] $end
+$var wire 16 ) mult_imag2 [15:0] $end
+$var wire 16 * mult_real [15:0] $end
+$var wire 16 + mult_real1 [15:0] $end
+$var wire 16 , mult_real2 [15:0] $end
+$var wire 32 - num1 [31:0] $end
+$var wire 32 . num2 [31:0] $end
+$var wire 16 / twiddle_imag [15:0] $end
+$var wire 3 0 twiddle_index [2:0] $end
+$var wire 16 1 twiddle_real [15:0] $end
+$var reg 16 2 imag_part [15:0] $end
+$var reg 16 3 num1_imag [15:0] $end
+$var reg 16 4 num1_real [15:0] $end
+$var reg 16 5 num2_imag [15:0] $end
+$var reg 16 6 num2_real [15:0] $end
+$var reg 16 7 real_part [15:0] $end
+$var reg 32 8 result [31:0] $end
+$scope module twiddle_inst $end
+$var wire 1 & clk $end
+$var wire 1 9 en $end
+$var wire 3 : index [2:0] $end
+$var reg 16 ; Wimag [15:0] $end
+$var reg 16 < Wreal [15:0] $end
+$var reg 4 = add_reg [3:0] $end
+$upscope $end
+$scope module mult_inst1 $end
+$var wire 1 > NaN $end
+$var wire 1 & clk $end
+$var wire 10 ? dump_res [9:0] $end
+$var wire 5 @ ex1 [4:0] $end
+$var wire 5 A ex1_pre [4:0] $end
+$var wire 5 B ex2 [4:0] $end
+$var wire 5 C ex2_pre [4:0] $end
+$var wire 5 D exR [4:0] $end
+$var wire 5 E exR_calc [4:0] $end
+$var wire 7 F exSum [6:0] $end
+$var wire 6 G exSum_abs [5:0] $end
+$var wire 5 H exSum_fault [4:0] $end
+$var wire 6 I exSum_prebais [5:0] $end
+$var wire 1 J exSum_sign $end
+$var wire 1 K ex_cannot_correct $end
+$var wire 21 L float1 [20:0] $end
+$var wire 11 M float2 [10:0] $end
+$var wire 12 N float_res [11:0] $end
+$var wire 10 O float_res_fra [9:0] $end
+$var wire 12 P float_res_preround [11:0] $end
+$var wire 10 Q fra1 [9:0] $end
+$var wire 10 R fra2 [9:0] $end
+$var wire 10 S fraR [9:0] $end
+$var wire 1 T inf_num $end
+$var wire 16 U num1 [15:0] $end
+$var wire 16 V num2 [15:0] $end
+$var wire 1 W overflow $end
+$var wire 1 X precisionLost $end
+$var wire 22 Y res_full_preshift [21:0] $end
+$var wire 16 Z resultt [15:0] $end
+$var wire 1 [ sign1 $end
+$var wire 1 \ sign2 $end
+$var wire 1 ] signR $end
+$var wire 1 ^ subNormal $end
+$var wire 1 _ zero $end
+$var wire 1 ` zero_calculated $end
+$var wire 1 a zero_num_in $end
+$var reg 5 b exSubCor [4:0] $end
+$var reg 10 c fraSub [9:0] $end
+$var reg 10 d fraSub_corrected [9:0] $end
+$var reg 22 e res_full [21:0] $end
+$var reg 16 f result [15:0] $end
+$upscope $end
+$scope module mult_inst2 $end
+$var wire 1 g NaN $end
+$var wire 1 & clk $end
+$var wire 10 h dump_res [9:0] $end
+$var wire 5 i ex1 [4:0] $end
+$var wire 5 j ex1_pre [4:0] $end
+$var wire 5 k ex2 [4:0] $end
+$var wire 5 l ex2_pre [4:0] $end
+$var wire 5 m exR [4:0] $end
+$var wire 5 n exR_calc [4:0] $end
+$var wire 7 o exSum [6:0] $end
+$var wire 6 p exSum_abs [5:0] $end
+$var wire 5 q exSum_fault [4:0] $end
+$var wire 6 r exSum_prebais [5:0] $end
+$var wire 1 s exSum_sign $end
+$var wire 1 t ex_cannot_correct $end
+$var wire 21 u float1 [20:0] $end
+$var wire 11 v float2 [10:0] $end
+$var wire 12 w float_res [11:0] $end
+$var wire 10 x float_res_fra [9:0] $end
+$var wire 12 y float_res_preround [11:0] $end
+$var wire 10 z fra1 [9:0] $end
+$var wire 10 { fra2 [9:0] $end
+$var wire 10 | fraR [9:0] $end
+$var wire 1 } inf_num $end
+$var wire 16 ~ num1 [15:0] $end
+$var wire 16 !" num2 [15:0] $end
+$var wire 1 "" overflow $end
+$var wire 1 #" precisionLost $end
+$var wire 22 $" res_full_preshift [21:0] $end
+$var wire 16 %" resultt [15:0] $end
+$var wire 1 &" sign1 $end
+$var wire 1 '" sign2 $end
+$var wire 1 (" signR $end
+$var wire 1 )" subNormal $end
+$var wire 1 *" zero $end
+$var wire 1 +" zero_calculated $end
+$var wire 1 ," zero_num_in $end
+$var reg 5 -" exSubCor [4:0] $end
+$var reg 10 ." fraSub [9:0] $end
+$var reg 10 /" fraSub_corrected [9:0] $end
+$var reg 22 0" res_full [21:0] $end
+$var reg 16 1" result [15:0] $end
+$upscope $end
+$scope module add_inst1 $end
+$var wire 1 2" NaN $end
+$var wire 5 3" big_ex [4:0] $end
+$var wire 5 4" big_ex_pre [4:0] $end
+$var wire 11 5" big_float [10:0] $end
+$var wire 10 6" big_fra [9:0] $end
+$var wire 1 7" big_sig $end
+$var wire 1 & clk $end
+$var wire 5 8" ex_diff [4:0] $end
+$var wire 1 9" inf_num $end
+$var wire 1 :" neg_exp $end
+$var wire 16 ;" num1 [15:0] $end
+$var wire 16 <" num2 [15:0] $end
+$var wire 1 =" overflow $end
+$var wire 5 >" res_exp_diff_s [4:0] $end
+$var wire 5 ?" res_exp_same_s [4:0] $end
+$var wire 16 @" resultt [15:0] $end
+$var wire 1 A" sameSign $end
+$var wire 5 B" small_ex [4:0] $end
+$var wire 5 C" small_ex_pre [4:0] $end
+$var wire 11 D" small_float [10:0] $end
+$var wire 10 E" small_fra [9:0] $end
+$var wire 1 F" small_sig $end
+$var wire 11 G" sum [10:0] $end
+$var wire 1 H" sum_carry $end
+$var wire 10 I" sum_extension [9:0] $end
+$var wire 1 J" zero $end
+$var wire 1 K" zeroSmall $end
+$var reg 16 L" bigNum [15:0] $end
+$var reg 1 M" precisionLost $end
+$var reg 16 N" result [15:0] $end
+$var reg 4 O" shift_am [3:0] $end
+$var reg 11 P" shifted_small_float [10:0] $end
+$var reg 11 Q" sign_small_float [10:0] $end
+$var reg 16 R" smallNum [15:0] $end
+$var reg 10 S" small_extension [9:0] $end
+$var reg 10 T" sum_shifted [9:0] $end
+$upscope $end
+$scope module mult_inst3 $end
+$var wire 1 U" NaN $end
+$var wire 1 & clk $end
+$var wire 10 V" dump_res [9:0] $end
+$var wire 5 W" ex1 [4:0] $end
+$var wire 5 X" ex1_pre [4:0] $end
+$var wire 5 Y" ex2 [4:0] $end
+$var wire 5 Z" ex2_pre [4:0] $end
+$var wire 5 [" exR [4:0] $end
+$var wire 5 \" exR_calc [4:0] $end
+$var wire 7 ]" exSum [6:0] $end
+$var wire 6 ^" exSum_abs [5:0] $end
+$var wire 5 _" exSum_fault [4:0] $end
+$var wire 6 `" exSum_prebais [5:0] $end
+$var wire 1 a" exSum_sign $end
+$var wire 1 b" ex_cannot_correct $end
+$var wire 21 c" float1 [20:0] $end
+$var wire 11 d" float2 [10:0] $end
+$var wire 12 e" float_res [11:0] $end
+$var wire 10 f" float_res_fra [9:0] $end
+$var wire 12 g" float_res_preround [11:0] $end
+$var wire 10 h" fra1 [9:0] $end
+$var wire 10 i" fra2 [9:0] $end
+$var wire 10 j" fraR [9:0] $end
+$var wire 1 k" inf_num $end
+$var wire 16 l" num1 [15:0] $end
+$var wire 16 m" num2 [15:0] $end
+$var wire 1 n" overflow $end
+$var wire 1 o" precisionLost $end
+$var wire 22 p" res_full_preshift [21:0] $end
+$var wire 16 q" resultt [15:0] $end
+$var wire 1 r" sign1 $end
+$var wire 1 s" sign2 $end
+$var wire 1 t" signR $end
+$var wire 1 u" subNormal $end
+$var wire 1 v" zero $end
+$var wire 1 w" zero_calculated $end
+$var wire 1 x" zero_num_in $end
+$var reg 5 y" exSubCor [4:0] $end
+$var reg 10 z" fraSub [9:0] $end
+$var reg 10 {" fraSub_corrected [9:0] $end
+$var reg 22 |" res_full [21:0] $end
+$var reg 16 }" result [15:0] $end
+$upscope $end
+$scope module mult_inst4 $end
+$var wire 1 ~" NaN $end
+$var wire 1 & clk $end
+$var wire 10 !# dump_res [9:0] $end
+$var wire 5 "# ex1 [4:0] $end
+$var wire 5 ## ex1_pre [4:0] $end
+$var wire 5 $# ex2 [4:0] $end
+$var wire 5 %# ex2_pre [4:0] $end
+$var wire 5 &# exR [4:0] $end
+$var wire 5 '# exR_calc [4:0] $end
+$var wire 7 (# exSum [6:0] $end
+$var wire 6 )# exSum_abs [5:0] $end
+$var wire 5 *# exSum_fault [4:0] $end
+$var wire 6 +# exSum_prebais [5:0] $end
+$var wire 1 ,# exSum_sign $end
+$var wire 1 -# ex_cannot_correct $end
+$var wire 21 .# float1 [20:0] $end
+$var wire 11 /# float2 [10:0] $end
+$var wire 12 0# float_res [11:0] $end
+$var wire 10 1# float_res_fra [9:0] $end
+$var wire 12 2# float_res_preround [11:0] $end
+$var wire 10 3# fra1 [9:0] $end
+$var wire 10 4# fra2 [9:0] $end
+$var wire 10 5# fraR [9:0] $end
+$var wire 1 6# inf_num $end
+$var wire 16 7# num1 [15:0] $end
+$var wire 16 8# num2 [15:0] $end
+$var wire 1 9# overflow $end
+$var wire 1 :# precisionLost $end
+$var wire 22 ;# res_full_preshift [21:0] $end
+$var wire 16 <# resultt [15:0] $end
+$var wire 1 =# sign1 $end
+$var wire 1 ># sign2 $end
+$var wire 1 ?# signR $end
+$var wire 1 @# subNormal $end
+$var wire 1 A# zero $end
+$var wire 1 B# zero_calculated $end
+$var wire 1 C# zero_num_in $end
+$var reg 5 D# exSubCor [4:0] $end
+$var reg 10 E# fraSub [9:0] $end
+$var reg 10 F# fraSub_corrected [9:0] $end
+$var reg 22 G# res_full [21:0] $end
+$var reg 16 H# result [15:0] $end
+$upscope $end
+$scope module add_inst2 $end
+$var wire 1 I# NaN $end
+$var wire 5 J# big_ex [4:0] $end
+$var wire 5 K# big_ex_pre [4:0] $end
+$var wire 11 L# big_float [10:0] $end
+$var wire 10 M# big_fra [9:0] $end
+$var wire 1 N# big_sig $end
+$var wire 1 & clk $end
+$var wire 5 O# ex_diff [4:0] $end
+$var wire 1 P# inf_num $end
+$var wire 1 Q# neg_exp $end
+$var wire 16 R# num1 [15:0] $end
+$var wire 16 S# num2 [15:0] $end
+$var wire 1 T# overflow $end
+$var wire 5 U# res_exp_diff_s [4:0] $end
+$var wire 5 V# res_exp_same_s [4:0] $end
+$var wire 16 W# resultt [15:0] $end
+$var wire 1 X# sameSign $end
+$var wire 5 Y# small_ex [4:0] $end
+$var wire 5 Z# small_ex_pre [4:0] $end
+$var wire 11 [# small_float [10:0] $end
+$var wire 10 \# small_fra [9:0] $end
+$var wire 1 ]# small_sig $end
+$var wire 11 ^# sum [10:0] $end
+$var wire 1 _# sum_carry $end
+$var wire 10 `# sum_extension [9:0] $end
+$var wire 1 a# zero $end
+$var wire 1 b# zeroSmall $end
+$var reg 16 c# bigNum [15:0] $end
+$var reg 1 d# precisionLost $end
+$var reg 16 e# result [15:0] $end
+$var reg 4 f# shift_am [3:0] $end
+$var reg 11 g# shifted_small_float [10:0] $end
+$var reg 11 h# sign_small_float [10:0] $end
+$var reg 16 i# smallNum [15:0] $end
+$var reg 10 j# small_extension [9:0] $end
+$var reg 10 k# sum_shifted [9:0] $end
+$upscope $end
+$scope module add_inst3 $end
+$var wire 1 l# NaN $end
+$var wire 5 m# big_ex [4:0] $end
+$var wire 5 n# big_ex_pre [4:0] $end
+$var wire 11 o# big_float [10:0] $end
+$var wire 10 p# big_fra [9:0] $end
+$var wire 1 q# big_sig $end
+$var wire 1 & clk $end
+$var wire 5 r# ex_diff [4:0] $end
+$var wire 1 s# inf_num $end
+$var wire 1 t# neg_exp $end
+$var wire 16 u# num1 [15:0] $end
+$var wire 16 v# num2 [15:0] $end
+$var wire 1 w# overflow $end
+$var wire 5 x# res_exp_diff_s [4:0] $end
+$var wire 5 y# res_exp_same_s [4:0] $end
+$var wire 16 z# resultt [15:0] $end
+$var wire 1 {# sameSign $end
+$var wire 5 |# small_ex [4:0] $end
+$var wire 5 }# small_ex_pre [4:0] $end
+$var wire 11 ~# small_float [10:0] $end
+$var wire 10 !$ small_fra [9:0] $end
+$var wire 1 "$ small_sig $end
+$var wire 11 #$ sum [10:0] $end
+$var wire 1 $$ sum_carry $end
+$var wire 10 %$ sum_extension [9:0] $end
+$var wire 1 &$ zero $end
+$var wire 1 '$ zeroSmall $end
+$var reg 16 ($ bigNum [15:0] $end
+$var reg 1 )$ precisionLost $end
+$var reg 16 *$ result [15:0] $end
+$var reg 4 +$ shift_am [3:0] $end
+$var reg 11 ,$ shifted_small_float [10:0] $end
+$var reg 11 -$ sign_small_float [10:0] $end
+$var reg 16 .$ smallNum [15:0] $end
+$var reg 10 /$ small_extension [9:0] $end
+$var reg 10 0$ sum_shifted [9:0] $end
+$upscope $end
+$scope module add_inst4 $end
+$var wire 1 1$ NaN $end
+$var wire 5 2$ big_ex [4:0] $end
+$var wire 5 3$ big_ex_pre [4:0] $end
+$var wire 11 4$ big_float [10:0] $end
+$var wire 10 5$ big_fra [9:0] $end
+$var wire 1 6$ big_sig $end
+$var wire 1 & clk $end
+$var wire 5 7$ ex_diff [4:0] $end
+$var wire 1 8$ inf_num $end
+$var wire 1 9$ neg_exp $end
+$var wire 16 :$ num1 [15:0] $end
+$var wire 16 ;$ num2 [15:0] $end
+$var wire 1 <$ overflow $end
+$var wire 5 =$ res_exp_diff_s [4:0] $end
+$var wire 5 >$ res_exp_same_s [4:0] $end
+$var wire 16 ?$ resultt [15:0] $end
+$var wire 1 @$ sameSign $end
+$var wire 5 A$ small_ex [4:0] $end
+$var wire 5 B$ small_ex_pre [4:0] $end
+$var wire 11 C$ small_float [10:0] $end
+$var wire 10 D$ small_fra [9:0] $end
+$var wire 1 E$ small_sig $end
+$var wire 11 F$ sum [10:0] $end
+$var wire 1 G$ sum_carry $end
+$var wire 10 H$ sum_extension [9:0] $end
+$var wire 1 I$ zero $end
+$var wire 1 J$ zeroSmall $end
+$var reg 16 K$ bigNum [15:0] $end
+$var reg 1 L$ precisionLost $end
+$var reg 16 M$ result [15:0] $end
+$var reg 4 N$ shift_am [3:0] $end
+$var reg 11 O$ shifted_small_float [10:0] $end
+$var reg 11 P$ sign_small_float [10:0] $end
+$var reg 16 Q$ smallNum [15:0] $end
+$var reg 10 R$ small_extension [9:0] $end
+$var reg 10 S$ sum_shifted [9:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx S$
+bx R$
+bx Q$
+bx P$
+bx O$
+b0 N$
+bx M$
+xL$
+bx K$
+xJ$
+xI$
+bx H$
+xG$
+bx F$
+xE$
+bx D$
+bx C$
+bx B$
+bx A$
+x@$
+bx ?$
+bx >$
+bx =$
+x<$
+bx ;$
+bx :$
+x9$
+x8$
+bx 7$
+x6$
+bx 5$
+bx 4$
+bx 3$
+bx 2$
+x1$
+bx 0$
+bx /$
+bx .$
+bx -$
+bx ,$
+b0 +$
+bx *$
+x)$
+bx ($
+x'$
+x&$
+bx %$
+x$$
+bx #$
+x"$
+bx !$
+bx ~#
+bx }#
+bx |#
+x{#
+bx z#
+bx y#
+bx x#
+xw#
+bx v#
+bx u#
+xt#
+xs#
+bx r#
+xq#
+bx p#
+bx o#
+bx n#
+bx m#
+xl#
+bx k#
+bx j#
+bx i#
+bx h#
+bx g#
+b0 f#
+bx e#
+xd#
+bx c#
+xb#
+xa#
+bx `#
+x_#
+bx ^#
+x]#
+bx \#
+bx [#
+bx Z#
+bx Y#
+xX#
+bx W#
+bx V#
+bx U#
+xT#
+bx S#
+bx R#
+xQ#
+xP#
+bx O#
+xN#
+bx M#
+bx L#
+bx K#
+bx J#
+xI#
+bx H#
+bx G#
+bx F#
+bx E#
+bx D#
+xC#
+xB#
+xA#
+x@#
+x?#
+x>#
+x=#
+bx <#
+bx ;#
+x:#
+x9#
+bx 8#
+bx 7#
+x6#
+bx 5#
+bx 4#
+bx 3#
+bx 2#
+bx 1#
+bx 0#
+bx /#
+bx0000000000 .#
+x-#
+x,#
+bx +#
+bx *#
+bx )#
+bx (#
+bx '#
+bx &#
+bx %#
+bx $#
+bx ##
+bx "#
+bx !#
+x~"
+bx }"
+bx |"
+bx {"
+bx z"
+bx y"
+xx"
+xw"
+xv"
+xu"
+xt"
+xs"
+xr"
+bx q"
+bx p"
+xo"
+xn"
+bx m"
+bx l"
+xk"
+bx j"
+bx i"
+bx h"
+bx g"
+bx f"
+bx e"
+bx d"
+bx0000000000 c"
+xb"
+xa"
+bx `"
+bx _"
+bx ^"
+bx ]"
+bx \"
+bx ["
+bx Z"
+bx Y"
+bx X"
+bx W"
+bx V"
+xU"
+bx T"
+bx S"
+bx R"
+bx Q"
+bx P"
+b0 O"
+bx N"
+xM"
+bx L"
+xK"
+xJ"
+bx I"
+xH"
+bx G"
+xF"
+bx E"
+bx D"
+bx C"
+bx B"
+xA"
+bx @"
+bx ?"
+bx >"
+x="
+bx <"
+bx ;"
+x:"
+x9"
+bx 8"
+x7"
+bx 6"
+bx 5"
+bx 4"
+bx 3"
+x2"
+bx 1"
+bx 0"
+bx /"
+bx ."
+bx -"
+x,"
+x+"
+x*"
+x)"
+x("
+x'"
+x&"
+bx %"
+bx $"
+x#"
+x""
+bx !"
+bx ~
+x}
+bx |
+bx {
+bx z
+bx y
+bx x
+bx w
+bx v
+bx0000000000 u
+xt
+xs
+bx r
+bx q
+bx p
+bx o
+bx n
+bx m
+bx l
+bx k
+bx j
+bx i
+bx h
+xg
+bx f
+bx e
+bx d
+bx c
+bx b
+xa
+x`
+x_
+x^
+x]
+x\
+x[
+bx Z
+bx Y
+xX
+xW
+bx V
+bx U
+xT
+bx S
+bx R
+bx Q
+bx P
+bx O
+bx N
+bx M
+bx0000000000 L
+xK
+xJ
+bx I
+bx H
+bx G
+bx F
+bx E
+bx D
+bx C
+bx B
+bx A
+bx @
+bx ?
+x>
+bx =
+bx <
+bx ;
+b0 :
+19
+bx 8
+bx 7
+bx 6
+bx 5
+bx 4
+bx 3
+bx 2
+bx 1
+b0 0
+bx /
+b0 .
+b0 -
+bx ,
+bx +
+bx *
+bx )
+bx (
+bx '
+0&
+b0 %
+b0 $
+b0 #
+0"
+bx !
+$end
+#5000
+bx00xxxxxxxx %"
+b0xxxxxxxx |
+bx00xxxxxxxx q"
+b0xxxxxxxx j"
+bx00xxxxxxxx Z
+b0xxxxxxxx S
+bx00xxxxxxxx <#
+b0xxxxxxxx 5#
+1+"
+b0 x
+1w"
+b0 f"
+1`
+b0 O
+1B#
+b0 1#
+b0 /"
+1)"
+b0 {"
+1u"
+b0 d
+1^
+b0 F#
+1@#
+b0 -"
+b0 ."
+b0 w
+1*"
+b0 y"
+b0 z"
+b0 e"
+1v"
+b0 b
+b0 c
+b0 N
+1_
+b0 D#
+b0 E#
+b0 0#
+1A#
+b0 0"
+b0 y
+b0 h
+1,"
+b0 |"
+b0 g"
+b0 V"
+1x"
+b0 e
+b0 P
+b0 ?
+1a
+b0 G#
+b0 2#
+b0 !#
+1C#
+b1 =$
+b1 x#
+b0 $"
+b0 p"
+b0 Y
+b0 ;#
+06$
+b0xxxxxxxxxxxxxxx ?$
+09$
+b1 2$
+b0 3$
+b0 4$
+b0 5$
+0q#
+b0xxxxxxxxxxxxxxx z#
+0t#
+b1 m#
+b0 n#
+b0 o#
+b0 p#
+0'"
+b1 k
+b0 l
+b0 v
+b0 {
+0s"
+b1 Y"
+b0 Z"
+b0 d"
+b0 i"
+0\
+b1 B
+b0 C
+b0 M
+b0 R
+0>#
+b1 $#
+b0 %#
+b0 /#
+b0 4#
+b0 K$
+b0 ($
+b0 =
+b0 5
+b0 !"
+b0 m"
+b0 6
+b0 V
+b0 8#
+b0 3
+b0 :$
+b0 4
+b0 u#
+1"
+1&
+#10000
+0"
+0&
+b1000100000000000000000000000000 $
+b1000100000000000000000000000000 .
+b111100000000000000000000000000 #
+b111100000000000000000000000000 -
+#15000
+0_
+0`
+b10011 q
+b0 m
+b0 |
+b0 &#
+b0 5#
+b10001 D
+b0 S
+b0 ["
+b0 j"
+0t
+b1101 p
+0g
+0""
+b11101 *#
+0~"
+09#
+b1111 H
+0^
+0>
+0W
+b11111 _"
+0U"
+0n"
+b1111 x#
+bx00xxxxxxxx D"
+b0xxxxxxxx E"
+0}
+0-#
+b11 )#
+06#
+0K
+b10001 G
+b100000000000000000000 e
+b10000000000 N
+b10000000000 P
+0a
+0T
+0b"
+b1 ^"
+0k"
+b1111 m#
+b10000000000 o#
+b1111 n#
+bx00xxxxxxxx [#
+b0xxxxxxxx \#
+bx00xxxxxxxx L#
+b0xxxxxxxx M#
+bx00xxxxxxxx R"
+bx00xxxxxxxx 5"
+b0xxxxxxxx 6"
+0("
+b0 %"
+1s
+b10011 n
+1#"
+0?#
+b0 <#
+0,#
+b11 '#
+0:#
+0]
+b100010000000000 Z
+0J
+b10001 E
+0X
+b100000000000000000000 Y
+0t"
+b0 q"
+0a"
+b1 \"
+0o"
+b10001 B
+b10000000000 M
+b10001 C
+b10001 $#
+b10000000000 /#
+b10001 %#
+b11110000000000 ($
+bx00xxxxxxxx i#
+bx00xxxxxxxx c#
+bx00xxxxxxxx <"
+bx00xxxxxxxx L"
+0&"
+b1110011 o
+b10 r
+b1 i
+b0 j
+b0 u
+b0 z
+0=#
+b11 (#
+b10010 +#
+b1 "#
+b0 ##
+b0 .#
+b0 3#
+0[
+b10001 F
+b100000 I
+b1111 @
+b1111 A
+b100000000000000000000 L
+b0 Q
+0r"
+b1 ]"
+b10000 `"
+b1111 W"
+b1111 X"
+b100000000000000000000 c"
+b0 h"
+b100010000000000 6
+b100010000000000 V
+b100010000000000 8#
+b11110000000000 4
+b11110000000000 u#
+b0xxxxxxxxxxxxxxx M$
+b0xxxxxxxxxxxxxxx *$
+bx00xxxxxxxx H#
+bx00xxxxxxxx )
+bx00xxxxxxxx S#
+bx00xxxxxxxx }"
+bx00xxxxxxxx (
+bx00xxxxxxxx R#
+bx00xxxxxxxx 1"
+bx00xxxxxxxx ,
+bx00xxxxxxxx f
+bx00xxxxxxxx +
+bx00xxxxxxxx ;"
+b0 ;
+b0 /
+b0 ~
+b0 7#
+b11110000000000 <
+b11110000000000 1
+b11110000000000 U
+b11110000000000 l"
+1"
+1&
+#20000
+0"
+0&
+#25000
+0="
+0T#
+b0 T"
+b10001 ?"
+b0 k#
+b1010 f#
+b10000000000 G"
+0H"
+0A"
+b0 ^#
+0_#
+0K"
+b0 Q"
+0M"
+1F"
+0a#
+0b#
+0d#
+b0 h#
+02"
+09"
+b0 P"
+b0 S"
+b0 I"
+b10001 >"
+0J"
+0I#
+0P#
+b0 g#
+b0 j#
+b0 `#
+1X#
+b0 U#
+b10000 8"
+b1 B"
+b0 C"
+b0 D"
+b0 E"
+07"
+b100010000000000 @"
+0:"
+b10001 3"
+b10001 4"
+b10000000000 5"
+b0 6"
+0]#
+b0 O#
+b1 Y#
+b0 Z#
+b0 [#
+b0 \#
+0N#
+b0xxxxx0000000000 W#
+1Q#
+b1 J#
+b0 K#
+b0 L#
+b0 M#
+b1000000000000000 R"
+b100010000000000 L"
+b1000000000000000 <"
+b0 i#
+b0 c#
+b100010000000000 f
+b100010000000000 +
+b100010000000000 ;"
+b0 1"
+b0 ,
+b0 }"
+b0 (
+b0 R#
+b0 H#
+b0 )
+b0 S#
+b0xxxxxxxxxxxxxxx 2
+b0xxxxxxxxxxxxxxx 7
+1"
+1&
+#30000
+0"
+0&
+#35000
+b100010100000000 z#
+b10001 y#
+b100000000 0$
+b10100000000 #$
+0$$
+0w#
+0'$
+b100000000 -$
+0)$
+b0 W#
+0I$
+01$
+1@$
+0l#
+0s#
+1{#
+b100000000 ,$
+b0 /$
+b0 %$
+b10001 x#
+0E$
+bx0000000000 C$
+b0 D$
+0&$
+0"$
+b10 r#
+b1111 |#
+b1111 }#
+b10000000000 ~#
+b0 !$
+b10001 m#
+b10001 n#
+b0 V#
+b0xxxxx0000000000 Q$
+b11110000000000 .$
+b100010000000000 ($
+b0xxxxxxxxxxxxxxx0xxxxxxxxxxxxxxx 8
+b0xxxxxxxxxxxxxxx0xxxxxxxxxxxxxxx !
+b0xxxxx0000000000 e#
+b0xxxxx0000000000 '
+b0xxxxx0000000000 ;$
+b100010000000000 N"
+b100010000000000 *
+b100010000000000 v#
+1"
+1&
+#40000
+0"
+0&
+#45000
+b0xxxxx0000000000 ?$
+b0 =$
+b0 S$
+b1010 N$
+19$
+b0 F$
+0G$
+0<$
+0J$
+b0 P$
+0L$
+08$
+b0 O$
+b0 R$
+b0 H$
+b0 7$
+b1 A$
+b0 C$
+b0 B$
+b0 Q$
+b0 e#
+b0 '
+b0 ;$
+b100010100000000 *$
+1"
+1&
+#50000
+0"
+0&
+#55000
+b0 ?$
+b0 >$
+b100010100000000 7
+b0xxxxx0000000000 M$
+1"
+1&
+#60000
+0"
+0&
+#65000
+b0 M$
+b1000101000000000xxxxxxxxxxxxxxx 8
+b1000101000000000xxxxxxxxxxxxxxx !
+b0xxxxx0000000000 2
+1"
+1&
+#70000
+0"
+0&
+#75000
+b1000101000000000xxxxx0000000000 8
+b1000101000000000xxxxx0000000000 !
+b0 2
+1"
+1&
+#80000
+0"
+0&
+#85000
+b1000101000000000000000000000000 8
+b1000101000000000000000000000000 !
+1"
+1&
+#90000
+0"
+0&
+#95000
+1"
+1&
+#100000
+0"
+0&
+#105000
+1"
+1&
+#110000
+0"
+0&
+#115000
+1"
+1&
+#120000
+0"
+0&
+#125000
+1"
+1&
+#130000
+0"
+0&
+#135000
+1"
+1&
+#140000
+0"
+0&
+#145000
+1"
+1&
+#150000
+0"
+0&
+#155000
+1"
+1&
+#160000
+0"
+0&
+#165000
+1"
+1&
+#170000
+0"
+0&
+#175000
+1"
+1&
+#180000
+0"
+0&
+#185000
+1"
+1&
+#190000
+0"
+0&
+#195000
+1"
+1&
+#200000
+0"
+0&
+#205000
+1"
+1&
+#210000
+0"
+0&
+#215000
+1"
+1&
+#220000
+0"
+0&
+#225000
+1"
+1&
+#230000
+0"
+0&
+#235000
+1"
+1&
+#240000
+0"
+0&
+#245000
+1"
+1&
+#250000
+0"
+0&
+#255000
+1"
+1&
+#260000
+0"
+0&
+#265000
+1"
+1&
+#270000
+0"
+0&
+#275000
+1"
+1&
+#280000
+0"
+0&
+#285000
+1"
+1&
+#290000
+0"
+0&
+#295000
+1"
+1&
+#300000
+0"
+0&
+#305000
+1"
+1&
+#310000
+0"
+0&
+#315000
+1"
+1&
+#320000
+0"
+0&
+#325000
+1"
+1&
+#330000
+0"
+0&
+#335000
+1"
+1&
+#340000
+0"
+0&
+#345000
+1"
+1&
+#350000
+0"
+0&
+#355000
+1"
+1&
+#360000
+0"
+0&
+#365000
+1"
+1&
+#370000
+0"
+0&
+#375000
+1"
+1&
+#380000
+0"
+0&
+#385000
+1"
+1&
+#390000
+0"
+0&
+#395000
+1"
+1&
+#400000
+0"
+0&
+#405000
+1"
+1&
+#410000
+0"
+0&
+#415000
+1"
+1&
+#420000
+0"
+0&
+#425000
+1"
+1&
+#430000
+0"
+0&
+#435000
+1"
+1&
+#440000
+0"
+0&
+#445000
+1"
+1&
+#450000
+0"
+0&
+#455000
+1"
+1&
+#460000
+0"
+0&
+#465000
+1"
+1&
+#470000
+0"
+0&
+#475000
+1"
+1&
+#480000
+0"
+0&
+#485000
+1"
+1&
+#490000
+0"
+0&
+#495000
+1"
+1&
+#500000
+0"
+0&
+#505000
+1"
+1&
+#510000
+0"
+0&
+#515000
+1"
+1&
+#520000
+0"
+0&
+#525000
+1"
+1&
+#530000
+0"
+0&
+#535000
+1"
+1&
+#540000
+0"
+0&
+#545000
+1"
+1&
+#550000
+0"
+0&
+#555000
+1"
+1&
+#560000
+0"
+0&
+#565000
+1"
+1&
+#570000
+0"
+0&
+#575000
+1"
+1&
+#580000
+0"
+0&
+#585000
+1"
+1&
+#590000
+0"
+0&
+#595000
+1"
+1&
+#600000
+0"
+0&
+#605000
+1"
+1&
+#610000
+0"
+0&
+#615000
+1"
+1&
+#620000
+0"
+0&
+#625000
+1"
+1&
+#630000
+0"
+0&
+#635000
+1"
+1&
+#640000
+0"
+0&
+#645000
+1"
+1&
+#650000
+0"
+0&
+#655000
+1"
+1&
+#660000
+0"
+0&
+#665000
+1"
+1&
+#670000
+0"
+0&
+#675000
+1"
+1&
+#680000
+0"
+0&
+#685000
+1"
+1&
+#690000
+0"
+0&
+#695000
+1"
+1&
+#700000
+0"
+0&
+#705000
+1"
+1&
+#710000
+0"
+0&
+#715000
+1"
+1&
+#720000
+0"
+0&
+#725000
+1"
+1&
+#730000
+0"
+0&
+#735000
+1"
+1&
+#740000
+0"
+0&
+#745000
+1"
+1&
+#750000
+0"
+0&
+#755000
+1"
+1&
+#760000
+0"
+0&
+#765000
+1"
+1&
+#770000
+0"
+0&
+#775000
+1"
+1&
+#780000
+0"
+0&
+#785000
+1"
+1&
+#790000
+0"
+0&
+#795000
+1"
+1&
+#800000
+0"
+0&
+#805000
+1"
+1&
+#810000
+0"
+0&
+#815000
+1"
+1&
+#820000
+0"
+0&
+#825000
+1"
+1&
+#830000
+0"
+0&
+#835000
+1"
+1&
+#840000
+0"
+0&
+#845000
+1"
+1&
+#850000
+0"
+0&
+#855000
+1"
+1&
+#860000
+0"
+0&
+#865000
+1"
+1&
+#870000
+0"
+0&
+#875000
+1"
+1&
+#880000
+0"
+0&
+#885000
+1"
+1&
+#890000
+0"
+0&
+#895000
+1"
+1&
+#900000
+0"
+0&
+#905000
+1"
+1&
+#910000
+0"
+0&
+#915000
+1"
+1&
+#920000
+0"
+0&
+#925000
+1"
+1&
+#930000
+0"
+0&
+#935000
+1"
+1&
+#940000
+0"
+0&
+#945000
+1"
+1&
+#950000
+0"
+0&
+#955000
+1"
+1&
+#960000
+0"
+0&
+#965000
+1"
+1&
+#970000
+0"
+0&
+#975000
+1"
+1&
+#980000
+0"
+0&
+#985000
+1"
+1&
+#990000
+0"
+0&
+#995000
+1"
+1&
+#1000000
+0"
+0&
+#1005000
+1"
+1&
+#1010000
+0"
+0&
+#1015000
+1"
+1&
