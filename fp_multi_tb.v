@@ -26,7 +26,7 @@ module flpm_sim();
 
   initial
     begin
-        $dumpfile("multi.vcd");
+        $dumpfile("outputs/multi.vcd");
         $dumpvars(1, flpm_sim);
         
         {sign1, exp1, fra1} = 16'hc200; // -3

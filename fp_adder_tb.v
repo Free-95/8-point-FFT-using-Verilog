@@ -27,7 +27,7 @@ module flpa_sim();
 
   initial
     begin
-        $dumpfile("adder.vcd");
+        $dumpfile("outputs/adder.vcd");
         $dumpvars(1, flpa_sim);
     
         {sign1, exp1, fra1} = 16'hb9a8; // -0.707

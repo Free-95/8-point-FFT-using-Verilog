@@ -8,7 +8,7 @@ module tROM_tb;
   twiddleROM dut (index, en, clk, Wreal, Wimag);
 
   initial begin
-    $dumpfile("wave.vcd");
+    $dumpfile("outputs/wave.vcd");
     $dumpvars(1,tROM_tb);
 
     index = 3'b000; en = 0; clk = 0;

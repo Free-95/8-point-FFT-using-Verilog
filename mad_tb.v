@@ -22,7 +22,7 @@ module fpmad_sim();
         clk = 0;
 
         // Open VCD file for waveform viewing
-        $dumpfile("fpmad.vcd");
+        $dumpfile("outputs/fpmad.vcd");
         $dumpvars(0, fpmad_sim);
         
         // Apply test vectors
