@@ -1,6 +1,6 @@
 module twiddleROM (
   input [2:0] index,
-  input en, clk,
+  input clk,
   output reg [15:0] Wreal, Wimag);
   
   reg [15:0] W [15:0]; // ROM declaration
@@ -39,12 +39,8 @@ module twiddleROM (
   
   always @(posedge clk)
     begin
-      if (en)
-        begin // Output corresponding W if enable is ON
-          Wreal <= W[2*add_reg];
-          Wimag <= W[2*add_reg+1];
-        end
-      else
-        {Wreal,Wimag} <= {32{1'bz}};
+        // Output corresponding W 
+        Wreal <= W[2*add_reg];
+        Wimag <= W[2*add_reg+1];
     end
 endmodule

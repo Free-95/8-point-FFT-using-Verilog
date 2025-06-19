@@ -35,7 +35,6 @@ module cpx_mad(
 
     twiddleROM twiddle_inst(
         .index(twiddle_index),
-        .en(1'b1), // Enable the ROM
         .clk(clk), 
         .Wreal(twiddle_real),
         .Wimag(twiddle_imag)
