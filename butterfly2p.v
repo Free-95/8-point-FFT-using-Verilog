@@ -1,4 +1,4 @@
-module butterfly2p (
+module butterfly2p_posit (
     input [31:0] num1, num2,
     input [2:0] twiddle_index,
     input clk,

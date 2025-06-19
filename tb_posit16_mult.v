@@ -22,6 +22,7 @@ parameter es = 3; // Ensure this matches the posit_mult module (it's 3 in your p
 reg [N-1:0] in1;
 reg [N-1:0] in2;
 reg start;
+reg clk;
 
 // Outputs from the DUT
 wire [N-1:0] out;
@@ -41,10 +42,13 @@ posit_mult #(
     .out(out),
     .inf(inf),
     .zero(zero),
-    .done(done)
+    .done(done),
+    .clk(clk)
 );
-
+initial clk = 0;
+always #5 clk = ~clk; // 10ns clock period
 initial begin
+    
     // Initialize inputs
     in1 = 16'h0000;
     in2 = 16'h0000;

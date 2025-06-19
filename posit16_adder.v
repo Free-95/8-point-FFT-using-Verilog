@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-module posit_add (in1, in2, start, out, inf, zero, done);
+module posit_add (in1, in2, start, out, inf, zero, done, clk);
 
 function [31:0] log2;
 input reg [31:0] value;
@@ -16,9 +16,10 @@ parameter es = 2;
 
 input [N-1:0] in1, in2;
 input start; 
-output [N-1:0] out;
+output reg [N-1:0] out;
 output inf, zero;
-output done;
+output reg done;
+input clk;
 
 wire start0= start;
 wire s1 = in1[N-1];
@@ -146,8 +147,10 @@ wire [N-1:0] tmp1_o_rnd = (r_o < N-es-2) ? tmp1_o_rnd_ulp[N-1:0] : tmp1_o[2*N-1+
 
 //Final Output
 wire [N-1:0] tmp1_oN = ls ? -tmp1_o_rnd : tmp1_o_rnd;
-assign out = inf|zero|(~DSR_left_out[N-1]) ? {inf,{N-1{1'b0}}} : {ls, tmp1_oN[N-1:1]},
-	done = start0;
+always @(posedge clk ) begin
+	out <= inf|zero|(~DSR_left_out[N-1]) ? {inf,{N-1{1'b0}}} : {ls, tmp1_oN[N-1:1]};
+	done <= start0;
+end
 
 endmodule
 
