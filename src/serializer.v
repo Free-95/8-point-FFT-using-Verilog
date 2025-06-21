@@ -27,7 +27,7 @@ module serializer (
     input clk, reset_n, start_serialize,  
     input [INPUT_SIZE-1:0] input_data, 
     output reg output_valid,      
-    output reg [OUTPUT_SIZE-1:0] output_data,   
+    output reg [OUTPUT_SIZE+INDEX_SIZE-1:0] output_data,   
     output reg serialization_done  
 );
 
@@ -35,15 +35,15 @@ module serializer (
     parameter OUTPUT_SIZE = 16;
     parameter WORD_SIZE = 32; 
     localparam NUM_OUTPUT_WORDS = INPUT_SIZE / OUTPUT_SIZE; 
-
-    // Index vector size needed to index all input words
-    localparam INDEX_SIZE = $clog2(INPUT_SIZE);
+    localparam INDEX_SIZE = $clog2(NUM_OUTPUT_WORDS);
 
     // Internal register to hold the input_data during serialization
     reg [INPUT_SIZE-1:0] internal_buffer;
 
     // Index register to keep track of which word is currently being outputted
-    reg [INDEX_SIZE-1:0] word_index;
+    reg [$clog2(INPUT_SIZE)-1:0] word_index;
+
+    reg [INDEX_SIZE-1:0] output_word_counter;
 
     // State machine for managing the serialization process
     localparam  STATE_IDLE = 1'b0,        // Waiting for start_serialize
@@ -57,6 +57,7 @@ module serializer (
             state <= STATE_IDLE;
             internal_buffer <= 0;
             word_index <= WORD_SIZE-1;
+            output_word_counter <= 0;
             output_valid <= 0;
             output_data <= 0;
             serialization_done <= 0;
@@ -72,6 +73,7 @@ module serializer (
                     if (start_serialize) begin
                         internal_buffer <= input_data;
                         word_index <= WORD_SIZE-1;
+                        output_word_counter <= 0;
                         state <= STATE_SERIALIZING;
                         // output_valid and output_data will be set in the SERIALIZING state
                     end
@@ -80,7 +82,7 @@ module serializer (
                     // Assert output_valid for the current chunk
                     output_valid <= 1;
 
-                    output_data <= internal_buffer[word_index -: OUTPUT_SIZE];
+                    output_data <= {output_word_counter, internal_buffer[word_index -: OUTPUT_SIZE]};
 
                     // Check if this is the last word to be outputted
                     if (word_index == (OUTPUT_SIZE - 1 + INPUT_SIZE - WORD_SIZE)) begin
@@ -90,8 +92,10 @@ module serializer (
                     end 
                     else begin
                         // Go to the start of the next word
-                        if ((word_index + 1 - OUTPUT_SIZE) % WORD_SIZE == 0)
+                        if ((word_index + 1 - OUTPUT_SIZE) % WORD_SIZE == 0) begin
                             word_index <= word_index + 2*WORD_SIZE - OUTPUT_SIZE;
+                            output_word_counter <= output_word_counter + 1;
+                        end
                         // Decrement index to complete the current word
                         else
                             word_index <= word_index - OUTPUT_SIZE;

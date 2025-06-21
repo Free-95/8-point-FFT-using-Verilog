@@ -1,7 +1,7 @@
-module top #(parameter N = 8, WORD_SIZE = 32, SIO_SIZE = 16) (
+module top #(parameter N = 8, WORD_SIZE = 32, SIO_SIZE = 32) (
     input [PIO_SIZE-1:0] input_data,
     input start, reset_n, clk,
-    output [SIO_SIZE-1:0] serial_out,
+    output [SIO_SIZE+$clog2(N)-1:0] serial_out,
     output output_valid, done
 );
 

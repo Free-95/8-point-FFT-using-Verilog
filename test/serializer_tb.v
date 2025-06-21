@@ -4,10 +4,10 @@ module serializer_tb;
     reg clk, reset_n, start_serialize;
     reg [255:0] in; 
     wire output_valid, serialization_done;
-    wire [15:0] out; 
+    wire [34:0] out; 
 
     // Instantiate the serializer module
-    serializer #(256, 16, 32) uut (
+    serializer #(256, 32, 32) uut (
         .clk(clk), .reset_n(reset_n), .start_serialize(start_serialize),
         .input_data(in), .output_data(out),
         .output_valid(output_valid), .serialization_done(serialization_done)
@@ -36,7 +36,7 @@ module serializer_tb;
         #10 start_serialize = 0;
 
         // Observe outputs for a few cycles
-        repeat (18) begin
+        repeat (10) begin
             #10; // Wait for clock cycles
             $display("Output Data: %h, Output Valid: %b, Serialization Done: %b", out, output_valid, serialization_done);
         end
@@ -49,7 +49,7 @@ module serializer_tb;
         #10 start_serialize = 1; // Start serialization again
         #10 start_serialize = 0; // Clear start signal
         
-        repeat (16) begin
+        repeat (10) begin
             #10; // Wait for clock cycles
             $display("Output Data: %h, Output Valid: %b, Serialization Done: %b", out, output_valid, serialization_done);
         end
