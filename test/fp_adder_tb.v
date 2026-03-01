@@ -49,7 +49,7 @@ module fp_adder_tb;
   initial begin
     clk = 0;
       
-    $dumpfile("../outputs/adder.vcd");
+    $dumpfile("outputs/adder.vcd");
     $dumpvars(1, fp_adder_tb);
     $display();
 

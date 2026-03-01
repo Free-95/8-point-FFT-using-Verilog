@@ -17,7 +17,7 @@ module bit_reverse_mapper_tb;
     integer i;
 
     initial begin
-        $dumpfile("../outputs/bitreverse.vcd"); 
+        $dumpfile("outputs/bitreverse.vcd"); 
         $dumpvars(0);
 
         // Initialize inputs with index value for visibility

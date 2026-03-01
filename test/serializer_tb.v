@@ -62,7 +62,7 @@ module serializer_tb;
         start_serialize = 0;
         in = 0;
 
-        $dumpfile("../outputs/serial.vcd");
+        $dumpfile("outputs/serial.vcd");
         $dumpvars(0, serializer_tb);
 
         #15 reset_n = 1;

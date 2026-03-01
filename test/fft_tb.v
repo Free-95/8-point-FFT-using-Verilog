@@ -21,7 +21,7 @@ module fft_tb;
         clk = 0; start = 0; reset_n = 0;
         in = 256'h0000000000000000000000000000000000000000000000000000000000000000;
 
-        $dumpfile("../outputs/fft.vcd");
+        $dumpfile("outputs/fft.vcd");
         $dumpvars(0, fft_tb);
 
         // Apply test vector

@@ -22,7 +22,7 @@ module cpx_mad_tb;
         clk = 0;
 
         // Open VCD file for waveform viewing
-        $dumpfile("../outputs/cpxmad.vcd");
+        $dumpfile("outputs/cpxmad.vcd");
         $dumpvars(0, cpx_mad_tb);
         
         // Apply test vectors

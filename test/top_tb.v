@@ -17,7 +17,7 @@ module top_tb;
         clk = 0; start = 0; reset_n = 0; 
         in = 256'h00000000000000000000000000000000; // 0 + 0i for all inputs
 
-        $dumpfile("../outputs/top.vcd");
+        $dumpfile("outputs/top.vcd");
         $dumpvars(0, top_tb);
 
         #5 start = 1; reset_n = 1;

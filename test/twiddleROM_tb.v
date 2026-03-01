@@ -8,7 +8,7 @@ module twiddleROM_tb;
   twiddleROM dut (index, clk, Wreal, Wimag);
 
   initial begin
-    $dumpfile("../outputs/twiddle.vcd");
+    $dumpfile("outputs/twiddle.vcd");
     $dumpvars(0,twiddleROM_tb);
 
     index = 3'b000; clk = 0;

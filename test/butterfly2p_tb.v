@@ -23,7 +23,7 @@ module butterfly2p_tb;
         clk = 0;
 
         // Open VCD file for waveform viewing
-        $dumpfile("../outputs/butterfly.vcd");
+        $dumpfile("outputs/butterfly.vcd");
         $dumpvars(0, butterfly2p_tb);
         
         // Apply test vectors

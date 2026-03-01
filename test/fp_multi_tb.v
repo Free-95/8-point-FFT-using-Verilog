@@ -48,7 +48,7 @@ module fp_multi_tb;
   initial begin
     clk = 0;
       
-    $dumpfile("../outputs/multi.vcd");
+    $dumpfile("outputs/multi.vcd");
     $dumpvars(0, fp_multi_tb);
     $display();
 
