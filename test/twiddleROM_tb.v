@@ -8,7 +8,7 @@ module twiddleROM_tb;
   twiddleROM dut (index, clk, Wreal, Wimag);
 
   initial begin
-    $dumpfile("../outputs/tROM.vcd");
+    $dumpfile("../outputs/twiddle.vcd");
     $dumpvars(0,twiddleROM_tb);
 
     index = 3'b000; clk = 0;
@@ -17,12 +17,9 @@ module twiddleROM_tb;
   end
 
   initial begin
-    // Initial state before any active clock edge or input change
-    $display("Initial state: W = %h+j%h", Wreal, Wimag);
-
     #5 // At t=5, clk goes high (first active edge)
     index = 3'd0;
-    #20 $display("index = %d, W = %h+j%h", index, Wreal, Wimag);
+    #20 $display("\nindex = %d, W = %h+j%h", index, Wreal, Wimag);
 
     // Repeat loop to iterate through index values 1 to 7
     repeat (7) begin 
@@ -30,6 +27,7 @@ module twiddleROM_tb;
       #20 $display("index = %d, W = %h+j%h", index, Wreal, Wimag);
     end
 
+    $display();
     $finish; // End simulation
   end
 endmodule

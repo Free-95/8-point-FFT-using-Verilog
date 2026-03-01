@@ -25,11 +25,18 @@ module top_tb;
         // Apply test vector
         #5 start = 1; reset_n = 1;
         #5 in = 256'h3c0000004000000042000000440000004400000042000000400000003c000000; // 1, 2, 3, 4, 4, 3, 2, 1
-        
-        #550 // Wait for the outputs to be stable
-        repeat (10) begin
-            #10 $display("Output: %h, Valid: %b, Done: %b", serial_out, output_valid, done);
+        $display("\n--- Parallel Inputs ---");        
+        for (integer i = 0; i < 8; i=i+1) begin
+            $display("[%0d]: %h+j%h", i, in[(255-i*32) -: 16], in[(239-i*32) -: 16]);
         end
+
+        #550 // Wait for the outputs to be stable
+    
+        $display("\n--- Serial Outputs ---");
+        repeat (10) begin
+            #10 $display("[%h]: %h+j%h, Valid: %b, Done: %b", serial_out[34:32], serial_out[31:16], serial_out[15:0], output_valid, done);
+        end
+        $display();
         #10 $finish;
     end
 

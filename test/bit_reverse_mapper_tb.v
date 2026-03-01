@@ -28,12 +28,13 @@ module bit_reverse_mapper_tb;
         #10; // Wait for outputs to settle
 
         // Display outputs
-        $display("Input Index -> Output Index (bit-reversed)");
+        $display("\nInput Index -> Output Index (bit-reversed)");
         for (i = 0; i < N; i = i + 1) begin
-            $display("in[%0d]=%0d -> out[%0d]=%0d", 
+            $display(" in[%0d]=%0d    ->    out[%0d]=%0d", 
                 i, in[i*SIZE +: SIZE], i, out[i*SIZE +: SIZE]);
         end
-
+ 
+        $display();
         $finish;
     end
 

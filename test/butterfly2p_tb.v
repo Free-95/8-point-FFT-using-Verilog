@@ -31,8 +31,8 @@ module butterfly2p_tb;
         num1 = 32'hc2000000; // -3
         num2 = 32'h3c000000; // 1
         twiddle_index = 3'b010;
-        #60 $display("num1: %h, num2: %h, twiddle_index: %b, result1: %h, result2: %h", num1, num2, twiddle_index, result1, result2);
-
+        #60 $display("\nnum1: %h+j%h, num2: %h+j%h, twiddle_index: %h, result1: %h+j%h, result2: %h+j%h", num1[31:16], num1[15:0], num2[31:16], num2[15:0], twiddle_index, result1[31:16], result1[15:0], result2[31:16], result2[15:0]);
+        $display("*** The result is being displayed in 16-bit floating point representation ***\n");
         #10 $finish;
     end
 

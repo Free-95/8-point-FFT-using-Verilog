@@ -21,139 +21,71 @@ module fp_adder_tb;
   reg [15:0] result_expected;
 
   assign correct = (result_expected == result);
-  assign {expected_sign,expected_exp,expected_fra} = result_expected;
+  assign {expected_sign, expected_exp, expected_fra} = result_expected;
 
-  initial
+  task run_test;
+    input [15:0] in1;
+    input [15:0] in2;
+    input [15:0] expected;
+    input [319:0] test_name; // 40-character string for test description
     begin
-      clk = 0;
-        
-      $dumpfile("../outputs/adder.vcd");
-      $dumpvars(1, fp_adder_tb);
-    
-        
-      {sign1, exp1, fra1} = 16'hc0b0;
-      {sign2, exp2, fra2} = 16'h1cc0;
-      result_expected = 16'hc0ae;
-      #100
-      {sign1, exp1, fra1} = 16'h00e0;
-      {sign2, exp2, fra2} = 16'h5060;
-      result_expected = 16'h5060;
-      #100
-      {sign1, exp1, fra1} = 16'h29a8;
-      {sign2, exp2, fra2} = 16'he1f9;
-      result_expected = 16'he1f9;
-      #100
-      {sign1, exp1, fra1} = 16'h54a5;
-      {sign2, exp2, fra2} = 16'h1cc0;
-      result_expected = 16'h54a5;
-      #100
-      {sign1, exp1, fra1} = 16'h00b8;
-      {sign2, exp2, fra2} = 16'h0080;
-      result_expected = 16'h0138;
-      #100
+      // Drive the inputs
+      {sign1, exp1, fra1} = in1;
+      {sign2, exp2, fra2} = in2;
+      result_expected = expected;
       
-      // Addition with precision lost
-      sign1 = 0;
-      sign2 = 0;
-      exp1 = 21;
-      exp2 = 14;
-      fra1 = 10'b10100101;
-      fra2 = 10'b11001100;
-      result_expected = 16'h54ae;
-      #100
-      
-      // Addition of two numbers with same exponent
-      sign1 = 0;
-      sign2 = 0;
-      exp1 = 4;
-      exp2 = 4;
-      fra1 = 10'b10100000;
-      fra2 = 10'b01101100;
-      result_expected = 16'h1486;
-      #100
-      
-      //Addition without precision lost
-      sign1 = 0;
-      sign2 = 0;
-      exp1 = 10;
-      exp2 = 12;
-      fra1 = 10'b11100000;
-      fra2 = 10'b01101001;
-      result_expected = 16'h31a1;
-      #100
-      
-      //Addition with different signs without precision lost
-      sign1 = 0;
-      sign2 = 1;
-      exp1 = 5;
-      exp2 = 6;
-      fra1 = 10'b10101100;
-      fra2 = 10'b00101101;
-      result_expected = 16'h935c;
-      #100
-      
-      sign1 = 1;
-      sign2 = 0;
-      exp1 = 13;
-      exp2 = 13;
-      fra1 = 10'b00001100;
-      fra2 = 10'b11101100;
-      result_expected = 16'h2b00;
-      #100
-      
-      sign1 = 1;
-      sign2 = 0;
-      exp1 = 30;
-      exp2 = 30;
-      fra1 = 10'b10101010;
-      fra2 = 10'b10101100;
-      result_expected = 16'h5400;
-      #100
-      
-      // Zero flag
-      sign1 = 1;
-      sign2 = 0;
-      exp1 = 25;
-      exp2 = 25;
-      fra1 = 10'b10011101;
-      fra2 = 10'b10011101;
-      result_expected = 16'h8000;
-      #100
-
-      // NaN flag
-      sign1 = 0;
-      sign2 = 0;
-      exp1 = 5'b10001;
-      exp2 = 5'b11111;
-      fra1 = 10'b11111111;
-      fra2 = 10'b11111111;
-      result_expected = 16'h7cff;
-      #100
-
-      // Overflow flag
-      sign1 = 0;
-      sign2 = 0;
-      exp1 = 5'b11110;
-      exp2 = 5'b11110;
-      fra1 = 10'b1111111111;
-      fra2 = 10'b1111111111;
-      result_expected = 16'h7c00;
-      #100
-    
-      sign1 = 0;
-      sign2 = 0;
-      exp1 = 5'b11111;
-      exp2 = 5'b10010;
-      fra1 = 10'b0000000000;
-      fra2 = 10'b1110000011;
-      result_expected = 16'h7c00;
-
-      // Wait for a while to observe results
+      // Wait for adder logic to settle
       #100;
-        
-      // Finish simulation
-      $finish;
+      
+      // Display Results
+      $display("--- %0s ---", test_name);
+      $display("  Inputs  : Num1 = %h, Num2 = %h", in1, in2);
+      $display("  Expected: %h | Actual: %h | Status: %s", expected, result, (correct ? "PASS" : "FAIL"));
+      $display("  Flags   : Overflow = %b, Zero = %b, NaN = %b, PrecisionLost = %b\n", overflow, zero, nan, precisionLost);
     end
+  endtask
+  
 
-    always #5 clk = ~clk; // Generate clock
+  initial begin
+    clk = 0;
+      
+    $dumpfile("../outputs/adder.vcd");
+    $dumpvars(1, fp_adder_tb);
+    $display();
+
+    // Basic additions
+    run_test(16'h00e0, 16'h5060, 16'h5060, "Test 1: Basic Addition 1");
+    run_test(16'h00b8, 16'h0080, 16'h0138, "Test 2: Basic Addition 2");
+    
+    // Addition with precision lost
+    run_test({1'b0, 5'd21, 10'b10100101}, {1'b0, 5'd14, 10'b11001100}, 16'h54ae, "Test 3: Addition with Precision Lost");
+    
+    // Addition of two numbers with same exponent
+    run_test({1'b0, 5'd4, 10'b10100000}, {1'b0, 5'd4, 10'b01101100}, 16'h1486, "Test 4: Same Exponent");
+    
+    // Addition with different signs without precision lost
+    run_test({1'b0, 5'd5, 10'b10101100}, {1'b1, 5'd6, 10'b00101101}, 16'h935c, "Test 5: Different Signs");
+    
+    run_test({1'b1, 5'd13, 10'b00001100}, {1'b0, 5'd13, 10'b11101100}, 16'h2b00, "Test 6: Sign cancellation test 1");
+    
+    run_test({1'b1, 5'd30, 10'b10101010}, {1'b0, 5'd30, 10'b10101100}, 16'h5400, "Test 7: Sign cancellation test 2");
+    
+    // Zero flag test
+    run_test({1'b1, 5'd25, 10'b10011101}, {1'b0, 5'd25, 10'b10011101}, 16'h8000, "Test 8: Zero Flag test (Result = -0)");
+
+    // NaN flag test
+    run_test({1'b0, 5'b10001, 10'b0011111111}, {1'b0, 5'b11111, 10'b0011111111}, 16'h7cff, "Test 9: NaN Flag Test");
+
+    // Overflow flag test
+    run_test({1'b0, 5'b11110, 10'b1111111111}, {1'b0, 5'b11110, 10'b1111111111}, 16'h7c00, "Test 10: Overflow Flag Test");
+  
+    // Inf + Num Test
+    run_test({1'b0, 5'b11111, 10'b0000000000}, {1'b0, 5'b10010, 10'b1110000011}, 16'h7c00, "Test 11: Infinity + Number Test");
+
+    $display();
+    $finish;
+  end
+
+  always #5 clk = ~clk; // Generate clock
+
 endmodule

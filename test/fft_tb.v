@@ -5,8 +5,9 @@ module fft_tb;
     reg clk, start, reset_n;
     wire [255:0] out;
     wire done;
+    
+    integer i; 
 
-    // Instantiate the 8-point FFT module
     fft_fp #(8, 32) uut (
         .inputs(in),
         .clk(clk), .start(start), .reset_n(reset_n),
@@ -18,9 +19,8 @@ module fft_tb;
     initial begin
         // Initialize inputs
         clk = 0; start = 0; reset_n = 0;
-        in = 256'h00000000000000000000000000000000; // 0 + 0i for all 8 inputs
+        in = 256'h0000000000000000000000000000000000000000000000000000000000000000;
 
-        // Open VCD file for waveform viewing
         $dumpfile("../outputs/fft.vcd");
         $dumpvars(0, fft_tb);
 
@@ -28,7 +28,27 @@ module fft_tb;
         #5 start = 1; reset_n = 1;
         #5 in = 256'h3c0000004000000042000000440000004400000042000000400000003c000000; // 1, 2, 3, 4, 4, 3, 2, 1
 
-        #500 $display("Output: %h", out);
+        // Display Inputs
+        $display("\n--- Time-Domain Digital Input Signal ---");
+        for (i = 0; i < 8; i = i + 1) begin
+            $display("x[%0d] = %h+j%h", 
+                     i, 
+                     in[(255 - i*32) -: 16],  // Top 16 bits (Real)
+                     in[(239 - i*32) -: 16]); // Bottom 16 bits (Imaginary)
+        end
+
+        #500; 
+        
+        // Display Outputs
+        $display("\n--- Frequency-Domain Digital Output Signal ---");
+        for (i = 0; i < 8; i = i + 1) begin
+            $display("X[%0d] = %h+j%h", 
+                     i,  
+                     out[(255 - i*32) -: 16], 
+                     out[(239 - i*32) -: 16]);
+        end
+
+        $display("\n*** The result is being displayed in 16-bit floating point representation ***\n");
         $finish;
     end
 endmodule

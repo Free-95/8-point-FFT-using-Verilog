@@ -30,43 +30,45 @@ module cpx_mad_tb;
         num1 = 32'h3c000000; // 1
         num2 = 32'h44000000; // 4
         twiddle_index = 3'b000;
-        #70 $display("num1: %h, num2: %h, twiddle_index: %b, result: %h", num1, num2, twiddle_index, result);
+
+        #70 $display("\nnum1: %h+j%h, num2: %h+j%h, twiddle_index: %h, result: %h+j%h", num1[31:16], num1[15:0], num2[31:16], num2[15:0], twiddle_index, result[31:16], result[15:0]);
 
         num1 = 32'hc200bc00; // -3-i
         num2 = 32'hbc00c200; // -1-3i
         twiddle_index = 3'b001;
-        #70 $display("num1: %h, num2: %h, twiddle_index: %b, result: %h", num1, num2, twiddle_index, result);
+        #70 $display("num1: %h+j%h, num2: %h+j%h, twiddle_index: %h, result: %h+j%h", num1[31:16], num1[15:0], num2[31:16], num2[15:0], twiddle_index, result[31:16], result[15:0]);
 
         num1 = 32'hc2000000; // -3
         num2 = 32'h3c000000; // 1
         twiddle_index = 3'b010;
-        #70 $display("num1: %h, num2: %h, twiddle_index: %b, result: %h", num1, num2, twiddle_index, result);
+        #70 $display("num1: %h+j%h, num2: %h+j%h, twiddle_index: %h, result: %h+j%h", num1[31:16], num1[15:0], num2[31:16], num2[15:0], twiddle_index, result[31:16], result[15:0]);
 
         num1 = 32'hc2003c00; // -3+i
         num2 = 32'hbc004200; // -1+3i
         twiddle_index = 3'b011;
-        #70 $display("num1: %h, num2: %h, twiddle_index: %b, result: %h", num1, num2, twiddle_index, result);
+        #70 $display("num1: %h+j%h, num2: %h+j%h, twiddle_index: %h, result: %h+j%h", num1[31:16], num1[15:0], num2[31:16], num2[15:0], twiddle_index, result[31:16], result[15:0]);
 
         num1 = 32'h45000000; // 5
         num2 = 32'h45000000; // 5
         twiddle_index = 3'b100;
-        #70 $display("num1: %h, num2: %h, twiddle_index: %b, result: %h", num1, num2, twiddle_index, result);
+        #70 $display("num1: %h+j%h, num2: %h+j%h, twiddle_index: %h, result: %h+j%h", num1[31:16], num1[15:0], num2[31:16], num2[15:0], twiddle_index, result[31:16], result[15:0]);
 
         num1 = 32'hc200bc00; // -3-i
         num2 = 32'hbc00c200; // -1-3i
         twiddle_index = 3'b101;
-        #70 $display("num1: %h, num2: %h, twiddle_index: %b, result: %h", num1, num2, twiddle_index, result);
+        #70 $display("num1: %h+j%h, num2: %h+j%h, twiddle_index: %h, result: %h+j%h", num1[31:16], num1[15:0], num2[31:16], num2[15:0], twiddle_index, result[31:16], result[15:0]);
 
         num1 = 32'h00000000; // 0
         num2 = 32'h00000000; // 0
         twiddle_index = 3'b110;
-        #70 $display("num1: %h, num2: %h, twiddle_index: %b, result: %h", num1, num2, twiddle_index, result);
+        #70 $display("num1: %h+j%h, num2: %h+j%h, twiddle_index: %h, result: %h+j%h", num1[31:16], num1[15:0], num2[31:16], num2[15:0], twiddle_index, result[31:16], result[15:0]);
 
         num1 = 32'hc2003c00; // -3+i
         num2 = 32'hbc004200; // -1+3i
         twiddle_index = 3'b111;
-        #70 $display("num1: %h, num2: %h, twiddle_index: %b, result: %h", num1, num2, twiddle_index, result);
- 
+        #70 $display("num1: %h+j%h, num2: %h+j%h, twiddle_index: %h, result: %h+j%h\n", num1[31:16], num1[15:0], num2[31:16], num2[15:0], twiddle_index, result[31:16], result[15:0]);
+
+        $display("*** The result is being displayed in 16-bit floating point representation ***\n"); 
         #10 $finish; // End simulation
     end
 

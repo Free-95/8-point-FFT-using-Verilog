@@ -1,26 +1,28 @@
-function decimal_num = fp16_decoder(binary_str)
+function decimal_num = fp16_decoder(hex_str)
 % FP16_DECODER 
-%   Converts the input BINARY_STR (a 16-character string representing a 
-%   16-bit binary number in IEEE 754 half-precision format) into its 
+%   Converts the input HEX_STR (a 4-character string representing a 
+%   16-bit hexadecimal number in IEEE 754 half-precision format) into its 
 %   equivalent decimal floating-point number.
 %
 %   Input:
-%     binary_str - A 16-character string of '0's and '1's.
+%     hex_str - A 4-character hexadecimal string.
 %
 %   Output:
-%     decimal_num - The decimal equivalent of the binary string.
+%     decimal_num - The decimal equivalent of the hex string.
 %
 %   Example:
-%     fp16_decoder('0011110000000000') returns 1.0 (positive 1)
-%     fp16_decoder('1011110000000000') returns -1.0 (negative 1)
-%     fp16_decoder('0000000000000000') returns 0.0 (positive zero)
-%     fp16_decoder('0111110000000000') returns Inf (positive infinity)
-%     fp16_decoder('0111110000000001') returns NaN (Not a Number)
+%     fp16_decoder('3c00') returns 1.0 (positive 1)
+%     fp16_decoder('bc00') returns -1.0 (negative 1)
+%     fp16_decoder('0000') returns 0.0 (positive zero)
+%     fp16_decoder('7c00') returns Inf (positive infinity)
 
 % Input validation
-if ~ischar(binary_str) || length(binary_str) ~= 16 || ~all(ismember(binary_str, '01'))
-    error('Input must be a 16-character binary string (e.g., ''0111101000000000'').');
+if ~ischar(hex_str) || length(hex_str) ~= 4 || ~all(isstrprop(hex_str, 'xdigit'))
+    error('Input must be a 4-character hex string (e.g., ''3c00'').');
 end
+
+% Convert 4-character hex string to 16-character binary string
+binary_str = dec2bin(hex2dec(hex_str), 16);
 
 % Define IEEE 754 half-precision parameters
 exponent_bits = 5;
